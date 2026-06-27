@@ -1,0 +1,16 @@
+=============================================
+       U-NET EVALUATION METRICS (SIZE 128)
+=============================================
+Dice Score  : 0.4186
+IoU Score   : 0.2647
+Precision   : 0.5254
+Recall      : 0.3479
+F1 Score    : 0.4186
+Accuracy    : 0.8955
+
+=============================================
+       CAE EVALUATION METRICS (SIZE 128)
+=============================================
+Anomaly Score (mean) : 0.014779
+Anomaly Score (%)    : 1.4779%
+Threshold Anomali    : 0.017578
