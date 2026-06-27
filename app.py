@@ -16,9 +16,9 @@ def load_models():
     try:
         # Dapatkan direktori tempat script dijalankan
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        unet_path = os.path.join(script_dir, "unet_best_final.keras")
-        cae_path  = os.path.join(script_dir, "cae_best_final.keras")
-
+        unet_path = os.path.join(script_dir, "models", "unet_best_final.keras")
+        cae_path  = os.path.join(script_dir, "models", "cae_best_final.keras")
+        
         if not os.path.exists(unet_path) or not os.path.exists(cae_path):
             st.error("Model files not found in the specified folder!")
             st.info(f"Check path: {script_dir}")
