@@ -160,58 +160,57 @@ def run_cae(cae_model, img_array, input_tensor, threshold):
         with col3:
             error_display = error / (error.max() + 1e-8)
             st.image((error_display * 255).astype(np.uint8), caption="Error Map", use_container_width=True)
-is_above_threshold = anomaly_score > threshold
+ is_above_threshold = anomaly_score > threshold
 
-if is_above_threshold:
-    st.info("📌 **Reconstruction Difference Above Threshold**")
-    st.warning(
+        if is_above_threshold:
+             st.info("📌 **Reconstruction Difference Above Threshold**")
+             st.warning(
         "The reconstruction score is above the predefined threshold, "
         "indicating a larger reconstruction difference between the original "
         "and reconstructed mammogram image."
-    )
-else:
-    st.success("✅ **Reconstruction Difference Within Threshold**")
-    st.info(
+            )
+        else:
+            st.success("✅ **Reconstruction Difference Within Threshold**")
+            st.info(
         "The reconstruction score is within the predefined threshold, "
         "indicating that the reconstructed image is consistent with the "
         "reconstruction pattern learned by the model."
-    )
+       )
 
-with st.expander("ℹ️ Model Details"):
-    st.write("**Architecture** : Convolutional Autoencoder (CAE)")
-    st.write("**Input Size** : 128 × 128")
-    st.write("**Dataset** : CBIS-DDSM")
-    st.write("**Loss Function** : Mean Squared Error (MSE)")
-    st.write("**Optimizer** : Adam")
-    st.write("**Output** : Reconstructed Image")
+        with st.expander("ℹ️ Model Details"):
+            st.write("**Architecture** : Convolutional Autoencoder (CAE)")
+            st.write("**Input Size** : 128 × 128")
+            st.write("**Dataset** : CBIS-DDSM")
+            st.write("**Loss Function** : Mean Squared Error (MSE)")
+            st.write("**Optimizer** : Adam")
+            st.write("**Output** : Reconstructed Image")
 
-st.markdown("---")
-st.subheader("📊 Performance Summary")
+        st.markdown("---")
+        st.subheader("📊 Performance Summary")
 
-col1, col2, col3 = st.columns(3)
+        col1, col2, col3 = st.columns(3)
 
-with col1:
-    st.metric("Average Anomaly Score", "1.4779%")
+        with col1:
+            st.metric("Average Anomaly Score", "1.4779%")
 
-with col2:
-    st.metric("Threshold", "1.7578%")
+        with col2:
+            st.metric("Threshold", "1.7578%")
 
-with col3:
-    st.metric("Evaluation", "Reconstruction-Based Analysis")
+        with col3:
+            st.metric("Evaluation", "Reconstruction-Based Analysis")
 
-if is_above_threshold:
-    st.warning(
+        if is_above_threshold:
+            st.warning(
         "The reconstruction score exceeds the predefined threshold, "
         "indicating greater reconstruction differences in the analyzed "
         "mammogram image."
-    )
-else:
-    st.success(
+             )
+        else:
+            st.success(
         "The reconstruction score is below the predefined threshold, "
         "indicating that the reconstructed image follows the reconstruction "
         "pattern learned by the model."
     )
-
 
 # ======================== MAIN APP ========================
 unet_model, cae_model = load_models()
