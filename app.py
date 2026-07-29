@@ -160,7 +160,8 @@ def run_cae(cae_model, img_array, input_tensor, threshold):
         with col3:
             error_display = error / (error.max() + 1e-8)
             st.image((error_display * 255).astype(np.uint8), caption="Error Map", use_container_width=True)
- is_above_threshold = anomaly_score > threshold
+
+        is_above_threshold = anomaly_score > threshold
 
         if is_above_threshold:
              st.info("📌 **Reconstruction Difference Above Threshold**")
@@ -211,6 +212,7 @@ def run_cae(cae_model, img_array, input_tensor, threshold):
         "indicating that the reconstructed image follows the reconstruction "
         "pattern learned by the model."
     )
+
 
 # ======================== MAIN APP ========================
 unet_model, cae_model = load_models()
@@ -272,4 +274,3 @@ st.caption(
     "and should be used for research and educational purposes only. "
     "They are not intended to support clinical diagnosis or medical decision-making."
 )
-
